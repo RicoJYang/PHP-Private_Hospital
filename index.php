@@ -1,7 +1,10 @@
+<!DOCTYPE html>
 <html>
 
 	<head>
+		<meta charset="UTF-8">
 		<title>Hospital General</title>
+		<link rel="stylesheet" href="css/styles.css">
 	</head>
 
 	<body>
@@ -15,10 +18,10 @@
 			</h4>
 		</header>
 
-		<div>
+		<div class="formulario">
 			<form action="login.php" method="post">
-				<input type="submit" name="user" />
-				<input type="submit" name="manager" />
+				<input type="submit" name="user" value="USER"/>
+				<input type="submit" name="manager" value="MANAGER"/>
 			</form>
 		</div>
 

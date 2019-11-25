@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html>
+	<?php require 'html/header.php' ?>	
 
-	<head>
-		<meta charset="UTF-8">
-		<title>HG - Acceso</title>
-		<link rel="stylesheet" href="css/styles.css">
-	</head>
-	
-	<body>
-		<div class="formulario">
-		<?php	
-			error_reporting(E_ALL);
-			ini_set('display_errors', '1');
-			
-			if($_SERVER['REQUEST_METHOD'] == 'POST')
-			{
-				echo "<h1>Hello there Mr/Ms " . $_REQUEST['apellido'] . " [" . $_REQUEST['nif'] . "]" . "</h1><br>";				
-				echo "<a href='.php'>Entrar al portal.</a>";				
-				session_start();
-				$_SESSION['login'] = 0;
-			}else
-			{
-				echo 	'<form method="post" action="' . $_SERVER['PHP_SELF'] . '">														
-							<label for="apellido">Apellido</label>
-							<input type="text" name="apellido">
-							<br>
-							<label for="nif">NIF/NIE</label>
-							<input type="text" name="nif">
-							<br>
-							<input name="enviar" type="submit" value="DALE CANDELA">							
-						</form>	';
-			}			
-		?>	
-		</div>
-	</body>
-	
-</html>
+
+					ACCESO
+				</h2>
+			</header>
+
+			<div class="form section">
+
+				<?php
+					error_reporting(E_ALL ^ E_NOTICE);
+					ini_set("display_errors", "1");
+					
+					require "conexionBBDD.php";
+					session_start();
+
+					$user = mysqli_real_escape_string($conx, $_POST["dni"]);
+
+					$sql = "SELECT nombre FROM usuarios WHERE dni = '$user'";
+					$result = mysqli_query($conx, $sql);
+					$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+      				$active = $row["active"];
+
+					$count = mysqli_num_rows($result);
+
+					if($count == 1)
+					{
+						$_SESSION["login_user"] = $user;
+
+						header("location:cita.php");
+					}	else
+					{
+						$error = "El NIF no está registrado en la base de datos";
+					}
+				?>
+
+				<form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+					<input class="input" type="text" name="dni" placeholder="NIF/NIE"/>					
+					<input class="button is-link" type="submit" name="login" value="ENTRAR"/>
+				</form>
+
+
+			</div>
+
+			<?php require 'html/footer.php' ?>

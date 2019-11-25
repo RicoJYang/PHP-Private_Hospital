@@ -1,30 +1,29 @@
-<!DOCTYPE html>
-<html>
+	<?php require 'html/header.php' ?>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Hospital General</title>
-		<link rel="stylesheet" href="css/styles.css">
-	</head>
+				
+					INICIO
+				</h2>
+			</header>
 
-	<body>
+			<div class="section">
+				<?php
+				if($_SERVER['REQUEST_METHOD'] == 'POST')
+				{
+					if(isset($_POST['user']))
+					{
+						header('Location: ' . 'login.php');
+					} else
+					{
+						header('Location: ' . 'management.php');
+					}
+				} else 
+				{
+					echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="post">
+						<input class="button is-link" type="submit" name="user" value="USER"/>
+						<input class="button is-link" type="submit" name="manager" value="MANAGER"/>
+					</form>';
+				}
+				?>
+			</div>
 
-		<header>
-			<h2>
-				HOSPITAL GENERAL
-			</h2>
-			<h4>
-				ACCESO AL PORTAL
-			</h4>
-		</header>
-
-		<div class="formulario">
-			<form action="login.php" method="post">
-				<input type="submit" name="user" value="USER"/>
-				<input type="submit" name="manager" value="MANAGER"/>
-			</form>
-		</div>
-
-	</body>
-
-</html>
+			<?php require 'html/footer.php' ?>

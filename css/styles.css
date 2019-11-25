@@ -1,11 +1,67 @@
-html {
-	font-family: arial;
+html, body{
+    margin: 0;
+    padding: 2em 0 0 0;    
+	min-height: 100%;
+	
+	text-align: center;
 }
 
-input {
-	color: blue;
+header {
+	height: 15%;
+
+	color: rgb(255, 255, 255);
+	background-color: rgb(97, 199, 199);		
 }
 
-.class {
-	background-color: cyan;
+body {
+	padding-bottom: 200px;
 }
+
+footer {	
+	clear: both;
+    height: 200px;    
+
+	text-align: center;
+	
+	color: rgb(190, 226, 226);
+	background-color: rgb(97, 199, 199);
+}
+
+a {
+	color: rgb(97, 199, 199);
+}
+
+.input {
+	width: 10%;	
+}
+
+.input.date {
+	width: 20%;
+}
+
+.button.is-link {
+	color: rgb(97, 199, 199);
+	background-color: rgb(216, 247, 247);
+}
+
+.button.is-link:hover {
+	color: rgb(62, 133, 133);	
+	background-color: rgb(203, 236, 236);
+}
+
+.button.is-link.red {
+	position:absolute;
+	right: 0;
+	color: rgb(216, 247, 247);
+	background-color: rgb(230, 82, 36);	
+}
+
+.button.is-link.red:hover {
+	color: rgb(203, 236, 236);
+	background-color: rgb(214, 72, 28);	
+}
+
+.container {
+	text-align: center;
+}
+

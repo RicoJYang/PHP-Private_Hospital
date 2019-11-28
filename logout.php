@@ -1,6 +1,5 @@
 <?php
-    session_start();				
-    unset($_SESSION["dni"]);
+    session_start();				    
     session_destroy();					
     header("Location: index.php");
 ?>

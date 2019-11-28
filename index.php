@@ -1,4 +1,4 @@
-	<?php require 'html/header.php' ?>
+	<?php require "html/header.php" ?>
 
 				
 					INICIO
@@ -11,7 +11,7 @@
 				{
 					if(isset($_POST['user']))
 					{
-						header('Location: ' . 'login.php');
+						header('Location: ' . 'cita.php');
 					} else
 					{
 						header('Location: ' . 'management.php');
@@ -26,4 +26,4 @@
 				?>
 			</div>
 
-			<?php require 'html/footer.php' ?>
+			<?php require "html/footer.php" ?>

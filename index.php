@@ -7,20 +7,22 @@
 
 			<div class="section">
 				<?php
-				if($_SERVER['REQUEST_METHOD'] == 'POST')
-				{
-					if(isset($_POST['user']))
-					{
-						header('Location: ' . 'cita.php');
+				if($_SERVER["REQUEST_METHOD"] == "POST")
+				{					
+					if(isset($_POST["admin"]))
+					{												
+						header('Location: ' . 'management.php');											
+						session_start();
+						$_SESSION["settings"] = 0;
 					} else
 					{
-						header('Location: ' . 'management.php');
+						header('Location: ' . 'cita.php');	
 					}
 				} else 
 				{
 					echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="post">
 						<input class="button is-link" type="submit" name="user" value="USER"/>
-						<input class="button is-link" type="submit" name="manager" value="MANAGER"/>
+						<input class="button is-link" type="submit" name="admin" value="ADMIN"/>
 					</form>';
 				}
 				?>

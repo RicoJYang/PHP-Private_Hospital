@@ -35,7 +35,8 @@
 		$resultado = $conexion->query($consulta, MYSQLI_USE_RESULT);
 
 		echo "<div class='field control select is-primary'>";
-		echo 	"<select id='pacientes'>";
+		echo 	"<select name='pacientes'>";
+		echo		"<option value='' selected disabled hidden>SELECCIONE EL PACIENTE</option>";
 
 		while ($row = $resultado->fetch_array(MYSQLI_ASSOC))
 		{
@@ -58,7 +59,8 @@
 		$resultado = $conexion->query($consulta, MYSQLI_USE_RESULT);
 
 		echo "<div class='field control select is-primary'>";
-		echo 	"<select id='medicos'>";
+		echo 	"<select name='medicos'>";
+		echo		"<option value='' selected disabled hidden>SELECCIONE EL MÉDICO</option>";
 
 		while ($row = $resultado->fetch_array(MYSQLI_ASSOC))
 		{
@@ -70,6 +72,29 @@
 	}
 
 
+	//--------------------------
+	//	RESERVAR CITA
+
+	function setCita($medico, $paciente, $hora, $fecha)
+	{
+		$conexion = getConexion();
+
+		if (!$conexion)
+		{
+			echo "<div class='notification is-warning'>";			
+			echo 	"<p>No se puede dar de alta. Error de conexion</p>";
+		  	echo "</div>";
+			exit();
+		}
+
+		$consulta = "INSERT INTO CONSULTA (COD_MEDICO, DNI_PACIENTE, HORA, FECHA) VALUES ('$medico', '$paciente', '$hora', '$fecha')";
+
+		$resultado = $conexion->query($consulta);
+		$conexion->close();
+
+		return $resultado;
+	}
+
 
 	//--------------------------
 	//	ALTA
@@ -80,20 +105,23 @@
 
 		if (!$conexion)
 		{
-			echo "<div class='notification is-warning'>";
-			echo 	"<button class='delete'/>";
-			echo 	"No se puede dar de alta. Error de conexion";
+			echo "<div class='notification is-warning'>";			
+			echo 	"<p>No se puede dar de alta. Error de conexion</p>";
 		  	echo "</div>";
 			exit();
 		}
 
-		$consulta = "INSERT INTO MEDICO (CODIGO, NOMBRE) VALUES ('$codigo', '$nombre')";		
+		$codigo = strtoupper($codigo);
+		$nombre = "DR./DRA. " . strtoupper($nombre);
+
+		$consulta = "INSERT INTO MEDICO (CODIGO, NOMBRE) VALUES ('$codigo', '$nombre')";
 
 		$resultado = $conexion->query($consulta);
 		$conexion->close();
-
-		return $resultado;
+		
+		return $resultado; // Devuelve boolean que puedo usar al llamar la funcion para hacer comprobaciones
 	}
+
 
 	//--------------------------
 	//	BAJA
@@ -104,9 +132,8 @@
 
 		if (!$conexion)
 		{
-			echo "<div class='notification is-warning'>";
-			echo 	"<button class='delete'/>";
-			echo 	"No se puede dar de baja. Error de conexion";
+			echo "<div class='notification is-warning'>";			
+			echo 	"<p>No se puede dar de alta. Error de conexion</p>";
 		  	echo "</div>";
 			exit();
 		}
@@ -119,55 +146,52 @@
 		return $resultado;		
 	}
 
+
 	//--------------------------
 	//	CONSULTA DISPONIBILIDAD
 
-	function consultaDisponibilidad($codigo)
+	function consultaDisponibilidad($medico, $codigo, $fecha)
 	{
 		$conexion = getConexion();
 
 		if (!$conexion)
 		{
 			echo "<div class='notification is-warning'>";
-			echo 	"<button class='delete'/>";
-			echo 	"No se puede consultar. Error de conexion";
+			echo 	"<p>No se puede dar de alta. Error de conexion</p>";
 		  	echo "</div>";
 			exit();
 		}
 
-		$consulta = "SELECT * FROM  WHERE COD_MEDICO = $CODIGO";
+		$consulta = "SELECT * FROM CONSULTA WHERE COD_MEDICO = '" . $codigo . "' AND FECHA = '" . $fecha . "'";		
 		$resultado = $conexion->query($consulta, MYSQLI_USE_RESULT);
 
-		echo "<table>";
+		$consultaMed = "SELECT * FROM MEDICO WHERE CODIGO = '" . $codigo . "'";		
+
+		echo "<p>CONSULTAS DE " . $codigo . "</p>";
+		echo "<p>FECHA: " . $fecha . "</p>";
+
+		echo "<table class='table'>";
 		echo 	"<thead>";
 		echo 		"<tr>";
 		echo 			"<th>HORA</th>";
-		echo 			"<th>DISPONIBILIDAD</th>";
+		echo 			"<th>PACIENTE</th>";		
 		echo 		"</tr>";
 		echo 	"</thead>";
 		echo 	"<tbody>";		
 
-		while($row = $resultado->fetch(MYSQLI_ASSOC))
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))
 		{
 			echo "<tr>";
-			echo "<td>" . $row[""];
+			echo "<td>" . $row["HORA"] . "</td>";
+			echo "<td>" . $row["DNI_PACIENTE"] . "</td>";						
 			echo "</tr>";
 		}
 		
 		echo 	"</tbody>";
+		echo "</table>";
 
-
-
-
-
-
-		
-		
-
-		$resultado = $conexion->query($consulta);
-		$conexion->close();
-
-		return $resultado;
+				
+		$conexion->close();		
 	}
 	
 ?>

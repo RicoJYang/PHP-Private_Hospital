@@ -11,7 +11,7 @@
 
 	<body>
 
-		<div class="container is-full">
+		<div class="full-container">
 			<header>
 				<h1 class="title is-2">
 					HOSPITAL GENERAL

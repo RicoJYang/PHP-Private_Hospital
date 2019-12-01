@@ -1,19 +1,24 @@
 	<?php require "html/header.php" ?>
 
-				
-					INICIO
-				</h2>
-			</header>
+			
+				INICIO
+			</h2>
+		</header>
 
-			<div class="section">
-				<?php
+		<div class="section">
+			<?php
+
+				session_start();
+					if(isset($_SESSION["MEDICO"]))
+					{
+						session_destroy();
+					}
+
 				if($_SERVER["REQUEST_METHOD"] == "POST")
 				{					
 					if(isset($_POST["admin"]))
 					{												
-						header('Location: ' . 'management.php');											
-						session_start();
-						$_SESSION["settings"] = 0;
+						header('Location: ' . 'admin.php');						
 					} else
 					{
 						header('Location: ' . 'cita.php');	
@@ -25,7 +30,7 @@
 						<input class="button is-link" type="submit" name="admin" value="ADMIN"/>
 					</form>';
 				}
-				?>
-			</div>
+			?>
+		</div>
 
-			<?php require "html/footer.php" ?>
+	<?php require "html/footer.php" ?>

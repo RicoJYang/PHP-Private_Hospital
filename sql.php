@@ -131,6 +131,71 @@
 
 
 	//--------------------------
+	//	NOMBRE MEDICO
+
+	function getNombreMedico($medico)
+	{
+		$conexion = getConexion();
+
+		$consulta = "SELECT NOMBRE FROM MEDICO WHERE CODIGO = '" . $medico . "' LIMIT 1";
+		$resultado = $conexion->query($consulta);
+		
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))
+		{
+			$nombre = $row["NOMBRE"];					
+		}
+
+		$conexion->close();
+
+		return $nombre;
+	}
+
+
+	//--------------------------
+	//	NOMBRE PACIENTE
+
+	function getNombrePaciente($paciente)
+	{
+		$conexion = getConexion();
+
+		$consulta = "SELECT * FROM PACIENTE WHERE DNI = '" . $paciente . "'";
+		$resultado = $conexion->query($consulta);
+		
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))
+		{
+			$nombre = $row["NOMBRE"];
+			$apellido1 = $row["APELLIDO1"];
+			$apellido2 = $row["APELLIDO2"];
+		}
+
+		$conexion->close();
+
+		return $nombre . " " . $apellido1 . " " . $apellido2;
+	}
+
+
+	//--------------------------
+	//	EMAIL PACIENTE
+
+	function getEmailPaciente($paciente)
+	{
+		$conexion = getConexion();
+
+		$consulta = "SELECT * FROM PACIENTE WHERE DNI = '" . $paciente . "'";
+		$resultado = $conexion->query($consulta);
+		
+		while($row = $resultado->fetch_array(MYSQLI_ASSOC))
+		{
+			$email = $row["EMAIL"];					
+		}
+
+		$conexion->close();
+
+		return $email;
+	}
+
+
+	//--------------------------
 	//	ALTA
 
 	function alta ($codigo, $nombre)
@@ -201,10 +266,9 @@
 		$consulta = "SELECT * FROM CONSULTA WHERE COD_MEDICO = '" . $codigo . "' AND FECHA = '" . $fecha . "'";		
 		$resultado = $conexion->query($consulta, MYSQLI_USE_RESULT);
 		
-		$consultaMed = "SELECT NOMBRE FROM MEDICO WHERE CODIGO = '" . $codigo . "' LIMIT 1";
-		$resultadoMed = $conexion->query($consultaMed);
+		$valueMed = getNombreMedico($codigo);
 		
-		echo "<p>CONSULTAS DE DR./DRA. " . $valueMed->NOMBRE . "</p>";		
+		echo "<p>CONSULTAS DE " . $valueMed . "</p>";		
 		echo "<p>FECHA: " . $fecha . "</p>";
 
 		echo "<table class='table'>";

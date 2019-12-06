@@ -30,9 +30,13 @@
                         echo 	"<p>Dia " . $fecha . "</p>";
                         echo 	"<p>Hora " . $hora . "</p>";
                         echo "</div>";
-                    }				
+                    }	
                 ?>
+
+                <div>
+                    <a class="button is-link red" href="logout.php">SALIR</a>
+                </div>
 				
-			</div>
+		    </div>
 
 		<?php include "html/footer.php" ?>

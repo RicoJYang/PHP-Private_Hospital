@@ -40,15 +40,15 @@ CREATE TABLE IF NOT EXISTS CONSULTA (
 
 -- Introducir datos de PACIENTE
 INSERT INTO `PACIENTE` (`DNI`, `NOMBRE`, `APELLIDO1`, `APELLIDO2`, `TELEFONO`, `EMAIL`, `FECHA_NAC`) VALUES
-	('12345678C', 'PERICO', 'POCO', 'PICO', '693852741', 'sb-kpmle664719@personal.example.com', '1954-11-25'),
-	('12345678D', 'SOLEDAD', 'SOLA', 'SOLERA', '693852741', 'sb-kpmle664719@personal.example.com', '1963-01-25'),
-	('12345678F', 'GLORIA', 'BENDITA', 'BENDITA', '693852741', 'sb-kpmle664719@personal.example.com', '1979-04-30'),
-	('12345678J', 'PEDRO', 'SANCHEZ', '', '693852741', 'sb-kpmle664719@personal.example.com', '1969-05-25'),
-	('12345678K', 'PABLO', 'CASADO', '', '693852741', 'sb-kpmle664719@personal.example.com', '1976-02-02'),
-	('12345678L', 'ANA', 'CARDO', 'TOSTADO', '693852741', 'sb-kpmle664719@personal.example.com', '1943-07-31'),
-	('12345678P', 'PABLO', 'IGLESIAS', '', '693852741', 'sb-kpmle664719@personal.example.com', '1975-11-25'),
-	('12345678T', 'JUAN', 'MAGAN', '', '693852741', 'sb-kpmle664719@personal.example.com', '1977-08-20'),
-	('12345678V', 'BARTOLO', 'CABEZA', 'BOLO', '693852741', 'sb-kpmle664719@personal.example.com', '1976-03-08');
+	('12345678C', 'PERICO', 'POCO', 'PICO', '693852741', 'pocopico@personal.example.com', '1954-11-25'),
+	('12345678D', 'SOLEDAD', 'SOLA', 'SOLERA', '693852741', 'solitaria@personal.example.com', '1963-01-25'),
+	('12345678F', 'GLORIA', 'BENDITA', 'BENDITA', '693852741', 'gloryhole@personal.example.com', '1979-04-30'),
+	('12345678J', 'PEDRO', 'SANCHEZ', '', '693852741', 'pedrulo@personal.example.com', '1969-05-25'),
+	('12345678K', 'PABLO', 'CASADO', '', '693852741', 'castrado@personal.example.com', '1976-02-02'),
+	('12345678L', 'ANA', 'CARDO', 'TOSTADO', '693852741', 'frutoseco@personal.example.com', '1943-07-31'),
+	('12345678P', 'PABLO', 'IGLESIAS', '', '693852741', 'pablemos@personal.example.com', '1975-11-25'),
+	('12345678T', 'JUAN', 'MAGAN', '', '693852741', 'electrolatino@personal.example.com', '1977-08-20'),
+	('12345678V', 'BARTOLO', 'CABEZA', 'BOLO', '693852741', 'bolondro@personal.example.com', '1976-03-08');
 
 -- Introducir datos de MEDICO
 INSERT INTO `MEDICO`(`CODIGO`, `NOMBRE`) VALUES ('1', 'DR/DRA UNAMUNO');

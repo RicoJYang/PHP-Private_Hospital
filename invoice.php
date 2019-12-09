@@ -1,7 +1,7 @@
 <?php require "html/header.php" ?>
 	
 				
-					CONFIRMACIÓN DE RESERVA
+					CONFIRMACIÓN DE RESERVA DE CITA
 				</h2>
 			</header>
 
@@ -26,7 +26,7 @@
                     if (!setCita($medico, $paciente, $hora, $fecha))
                     {
                         echo "<div class='notification is-success'>";																		
-                        echo 	"<p>Reserva realizada con éxito</p>";
+                        echo 	"<p>Cita reservada con éxito</p>";
                         echo 	"<p>Dia " . $fecha . "</p>";
                         echo 	"<p>Hora " . $hora . "</p>";
                         echo "</div>";

@@ -267,7 +267,7 @@
 		$resultado = $conexion->query($consulta, MYSQLI_USE_RESULT);
 		
 		$valueMed = getNombreMedico($codigo);
-		
+
 		echo "<p>CONSULTAS DE " . $valueMed . "</p>";		
 		echo "<p>FECHA: " . $fecha . "</p>";
 
@@ -275,20 +275,26 @@
 		echo 	"<thead>";
 		echo 		"<tr>";
 		echo 			"<th>HORA</th>";
-		echo 			"<th>DISPONIBILIDAD</th>";		
+		echo 			"<th>DISPONIBILIDAD</th>";
+		echo			"<th>PACIENTE</th>";
 		echo 		"</tr>";
 		echo 	"</thead>";
 		echo 	"<tbody>";
 
 		$iterador = 0;
 		$ocupadas = [];
+		$pacientes = [];
+
 		while($row = $resultado->fetch_array(MYSQLI_ASSOC))
 		{
 			$ocupadas[$iterador] = $row["HORA"];
+			$pacientes[$iterador] = $row["DNI_PACIENTE"];
 			$iterador++;
 		}
 		
 		$disponibles = array_diff($arrayHoras, $ocupadas);
+		
+		$iterador = 0;
 		
 		for ($i = 0; $i < 10; $i++)
 		{			
@@ -297,10 +303,13 @@
 			if (in_array($arrayHoras[$i], $disponibles))
 			{
 				echo "<td class='available'>DISPONIBLE</td>";
+				echo "<td> - </td>";
 			}
 			else
-			{
-				echo "<td class='not-available'>NO DISPONIBLE</td>";
+			{				
+				echo "<td class='not-available'>NO DISPONIBLE</td>";				
+				echo "<td>" . getNombrePaciente($pacientes[$iterador]) . "</td>";
+				$iterador++;
 			}
 		}
 			echo "</tr>";
